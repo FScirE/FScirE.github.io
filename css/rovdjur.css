@@ -138,7 +138,7 @@ main p {
 @media screen and (max-width: 460px) {
     html { font-size: 13px; }
     header { background-size: auto 100vw; }
-    main p { font-size: 12.6px; }
+    main p { font-size: 12.8px; }
     main {
         margin-left: 3%;
         margin-right: 3%;
@@ -173,7 +173,7 @@ main p {
     /*-----------------------------------*/
 
     #b_lodjur:checked ~ #lodjur { 
-        max-height: 1500px; 
+        max-height: 1600px; 
         transition: max-height 1s;
         padding-bottom: 12px;
         border-bottom: 1px dotted rgb(100, 80, 20);
@@ -181,7 +181,7 @@ main p {
     #b_lodjur:checked ~ #c_lodjur { background-color: rgb(190, 220, 180); }
     
     #b_varg:checked ~ #varg { 
-        max-height: 1500px; 
+        max-height: 1600px; 
         transition: max-height 1s; 
         padding-bottom: 12px;
         border-bottom: 1px dotted rgb(100, 80, 20);
@@ -189,7 +189,7 @@ main p {
     #b_varg:checked ~ #c_varg { background-color: rgb(190, 220, 180); }
 
     #b_kungsörn:checked ~ #kungsörn { 
-        max-height: 1500px; 
+        max-height: 1600px; 
         transition: max-height 1s;
         padding-bottom: 12px;
         border-bottom: 1px dotted rgb(100, 80, 20);
@@ -197,7 +197,7 @@ main p {
     #b_kungsörn:checked ~ #c_kungsörn { background-color: rgb(190, 220, 180); }
 
     #b_björn:checked ~ #björn { 
-        max-height: 1500px; 
+        max-height: 1600px; 
         transition: max-height 1s;
         padding-bottom: 12px;
         border-bottom: 1px dotted rgb(100, 80, 20);
@@ -205,7 +205,7 @@ main p {
     #b_björn:checked ~ #c_björn { background-color: rgb(190, 220, 180); }
 
     #b_järv:checked ~ #järv { 
-        max-height: 1500px; 
+        max-height: 1600px; 
         transition: max-height 1s; 
         padding-bottom: 12px;
         border-bottom: 1px dotted rgb(100, 80, 20);
@@ -213,7 +213,7 @@ main p {
     #b_järv:checked ~ #c_järv { background-color: rgb(190, 220, 180); }
 
     #b_geting:checked ~ #geting { 
-        max-height: 1500px; 
+        max-height: 1600px; 
         transition: max-height 1s; 
         padding-bottom: 12px;
         border-bottom: 1px dotted rgb(100, 80, 20);
