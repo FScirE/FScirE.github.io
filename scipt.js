@@ -30,7 +30,7 @@ function addLegend() {
     if (legendCount < 3)
         legendCount++;
 
-    let newText = legendCount + " Legends";
+    let newText = legendCount + " Players";
     document.querySelector("#numberbox").firstChild.textContent = newText;
 }
 
@@ -39,7 +39,7 @@ function subLegend() {
         legendCount--;
 
     suffix = legendCount > 1 ? "s" : "";
-    let newText = legendCount + " Legend" + suffix;
+    let newText = legendCount + " Player" + suffix;
     document.querySelector("#numberbox").firstChild.textContent = newText;
 }
 

@@ -9,13 +9,13 @@
     <link rel="icon" type="image/x-icon" href="./img/apex legends.ico">
     <script src="./scipt.js"></script>
 </head>
-<body>
+<body onload="generateResult()">
     <header>
         <h1>Apex Legends Randomizer</h1>
     </header>
     <main>
         <div id="input">
-            <div id="numberbox"><p>1 Legend</p></div>
+            <div id="numberbox"><p>1 Player</p></div>
             <div class="button" onclick="addLegend()"><p>+</p></div>
             <div class="button" onclick="subLegend()"><p>-</p></div>
             <div class="button" id="wide" onclick="generateResult()"><p>Randomize</p></div>
