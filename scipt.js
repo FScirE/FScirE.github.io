@@ -50,7 +50,7 @@ function randomIntFromInterval(min, max) { // min and max included
 function returnIndexes(count) {
     if (count > 23 || count < 1) return [];
 
-    let indexes = [];
+    var indexes = [];
     for (var i = 0; i < count; i++) {
         let randnum = 0
         do {
@@ -63,7 +63,7 @@ function returnIndexes(count) {
 }
 
 function generateResult() {
-    let innerHTML = ""
+    var innerHTML = ""
     let suffix = legendCount > 1 ? "s" : "";
     innerHTML +=
         '<h2>Your Legend' + suffix + ':</h2>\n' +

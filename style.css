@@ -65,12 +65,13 @@ header {
 }
 
 #result {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .card {
     position: relative;
-    display: table-cell;
     background-color: #89898e;
     width: 300px;
     padding: 20px;
