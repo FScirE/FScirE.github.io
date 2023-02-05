@@ -1,14 +1,14 @@
 html {
     background-color: #4c4c52;
     font-family: sans-serif;
-    font-size: 22px;
+    font-size: 21px;
     color: #dfdfdf;
     text-align: center;
     user-select: none;
 }
 
 header {
-    font-size: 26px;
+    font-size: 24px;
     padding: 50px;
 }
 
@@ -89,6 +89,17 @@ header {
 }
 .card img {
     margin-top: 42px;
-    margin-bottom: 4px;
     width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+    #input {
+        height: 46px;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    body { margin: 0; }
+
+    .button { padding: 0 16px 0 16px; }
 }
