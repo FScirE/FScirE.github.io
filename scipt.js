@@ -28,7 +28,7 @@ let weapons = {
     1 : ["img/weapons/30-30 Repeater.png", "30-30 Repeater"],
     2 : ["img/weapons/Alternator SMG.png", "Alternator SMG"],
     3 : ["img/weapons/Bocek Compound Bow.png", "Bocek Compound Bow"],
-    4 : ["img/weapons/C.A.R. SMG.png", "C.A.R. SMG.png"],
+    4 : ["img/weapons/C.A.R. SMG.png", "C.A.R. SMG"],
     5 : ["img/weapons/Charge Rifle.png", "Charge Rifle"],
     6 : ["img/weapons/Devotion LMG.png", "Devotion LMG"],
     7 : ["img/weapons/EVA-8 Auto.png", "EVA-8 Auto"],
@@ -102,6 +102,19 @@ function returnIndexes(count, min, max, exclude = []) {
     return indexes;
 }
 
+function generateRandomCards(dict, amount) {
+    var innerHTML = "";
+    let indexes = returnIndexes(amount, 1, Object.keys(dict).length);
+    indexes.forEach(i => {
+        innerHTML +=
+            '<div class="card">\n' +
+                '<h3>' + dict[i][1] + '</h3>\n' +
+                '<img src="' + dict[i][0] + '" alt="' + dict[i][1] + '">\n' +
+            '</div>\n';
+    });
+    return innerHTML;
+}
+
 function generateResult() {
     var innerHTML = ""
     let suffix = legendCount > 1 ? "s" : "";
@@ -112,30 +125,16 @@ function generateResult() {
     innerHTML +=
         '<h2 id="title">Your Legend' + suffix + ':</h2>\n' +
         '<div id="result">\n';
-    let legendIndexes = returnIndexes(legendCount, 1, Object.keys(legends).length);
-    legendIndexes.forEach(i => {
-        innerHTML +=
-            '<div class="card">\n' +
-                '<h3>' + legends[i][1] + '</h3>\n' +
-                '<img src="' + legends[i][0] + '" alt="' + legends[i][1] + '">\n' +
-            '</div>\n';
-    });
-    innerHTML += '</div>'
+    innerHTML += generateRandomCards(legends, legendCount)
+    innerHTML += '</div>';
 
     if (randomizeWeapons) {
         innerHTML +=
             '<br>' +
             '<div id="weaponresult">\n';
-        let weaponIndexes = returnIndexes(2, 1, Object.keys(weapons).length, red_weapons);
-        weaponIndexes.forEach(i => {
-            innerHTML +=
-                '<div class="card">\n' +
-                    '<h3>' + weapons[i][1] + '</h3>\n' +
-                    '<img src="' + weapons[i][0] + '" alt="' + weapons[i][1] + '">\n' +
-                '</div>\n';
-        });
+        innerHTML += generateRandomCards(weapons, 2)
+        innerHTML += '</div>';
     }
-    innerHTML += '</div>'
 
     document.querySelector("#generated").innerHTML = innerHTML;
 }
