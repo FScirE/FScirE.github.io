@@ -14,11 +14,16 @@
         <h1>Apex Legends Randomizer</h1>
     </header>
     <main>
-        <div id="input">
-            <div id="numberbox"><p>1 Player</p></div>
+        <div class="input">
+            <div class="box" id="numberbox"><p>1 Player</p></div>
             <div class="button" onclick="addLegend()"><p>+</p></div>
             <div class="button" onclick="subLegend()"><p>-</p></div>
-            <div class="button" id="wide" onclick="generateResult()"><p>Randomize</p></div>
+            <div class="button" onclick="generateResult()"><p>Randomize</p></div>
+        </div>
+        <br>
+        <div class="input">
+            <div class="button" onclick="toggleRandomWeapons()"><p>Toggle random weapons</p></div>
+            <div class="box" id="weaponbox"><p>OFF</p></div>
         </div>
         <br>
         <span id="generated">
