@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Randomizer</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="./img/apex legends.ico">
+    <script src="./scipt.js"></script>
+</head>
+<body onload="generateResult()">
+    <header>
+        <h1>Apex Legends Randomizer</h1>
+    </header>
+    <main>
+        <div class="input">
+            <div class="box" id="numberbox"><p>1 Player</p></div>
+            <div class="button" onclick="addLegend()"><p>+</p></div>
+            <div class="button" onclick="subLegend()"><p>-</p></div>
+            <div class="button" onclick="generateResult()"><p>Randomize</p></div>
+        </div>
+        <br>
+        <div class="input">
+            <div class="button" onclick="toggleRandomWeapons()"><p>Toggle random weapons</p></div>
+            <div class="box" id="weaponbox"><p>OFF</p></div>
+        </div>
+        <br>
+        <span id="generated">
+        </span>
+    </main>
+</body>
+</html>

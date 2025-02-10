@@ -1,0 +1,141 @@
+html {
+    background-color: #4c4c52;
+    font-family: sans-serif;
+    font-size: 21px;
+    color: #dfdfdf;
+    text-align: center;
+    user-select: none;
+    margin-bottom: 120px
+}
+
+header {
+    font-size: 24px;
+    padding: 34px;
+    margin-bottom: 12px;
+}
+
+body {
+    margin: 0;
+}
+
+.input {
+    display: inline-flex;
+    justify-content: space-evenly;
+    height: 50px;
+    width: 540px;
+    background-color: #89898e;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px 5px #89898e;
+    clip-path: inset(0px -20px 0px -20px);
+}
+.input div {
+    box-shadow: 0 0 5px 0 #4c4c52;
+}
+
+.button {
+    display: inline-table;
+    text-align: center;
+    background-color: #be3434;
+    height: 100%;
+    width: min-content;
+    padding: 0 20px 0 20px;
+}
+.button p {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    white-space: nowrap;
+}
+.button:hover {
+    background-color: #cf4747;
+}
+.button:active {
+    background-color: #be3434;
+}
+
+.box {
+    color: black;
+    display: inline-table;
+    text-align: center;
+    background-color: #dedede;
+    height: 100%;
+    width: 140px;
+}
+.box p {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#title {
+    margin-top: 50px;
+}
+
+#result {
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-image: url("./img/background.jpg");
+    background-size: cover;
+}
+
+#weaponresult {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-image: url("./img/background_edit.png");
+    background-size: cover;
+}
+
+.card {
+    animation: appear 0.4s ease-in-out;
+    position: relative;
+    background-color: #89898e;
+    width: 300px;
+    padding: 20px;
+    margin: 20px;
+    height: min-content;
+    box-shadow: 0 0 5px 5px #89898e;
+    clip-path: inset(0px -20px 0px -20px);
+    opacity: 1;
+}
+.card h3 {
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    text-shadow: #4c4c52 0 0 5px;
+}
+#result .card img {
+    margin-top: 42px;
+    width: 100%;
+}
+
+#weaponresult .card {
+    width: 260px;
+}
+#weaponresult .card img {
+    margin-top: 48px;
+    width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+    .input {
+        height: 46px;
+        width: 100%;
+        box-shadow: none;
+    }
+    .button { padding: 0 16px 0 16px; }
+    .button:hover { background-color: #be3434; }
+}
+
+@keyframes appear {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
