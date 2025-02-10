@@ -14,32 +14,32 @@
         <div id="selection">
             <div class="input" id="magsize">
                 <h4>Base mag size</h4>
-                <input type="text">
+                <input type="text" oninput="validate(this)">
             </div>
             <div class="input perk" id="slot1">
                 <h4>Perk slot 1</h4>
-                <button class="dropbutton">...</button>
-                <div class="dropdown">
-                    <p onclick="dropdownClick(this)">Triple Tap</p>
-                    <p onclick="dropdownClick(this)">Fourth Time's The Charm</p>
-                    <p onclick="dropdownClick(this)">Deconstruct</p>
+                <div class="container">
+                    <button class="dropbutton"></button>
+                    <div class="dropdown">
+                        <!-- script adds elements -->
+                    </div>
                 </div>
             </div>
             <div class="input perk" id="slot2">
                 <h4>Perk slot 2</h4>
-                <button class="dropbutton">...</button>
-                <div class="dropdown">
-                    <p onclick="dropdownClick(this)">Triple Tap</p>
-                    <p onclick="dropdownClick(this)">Fourth Time's The Charm</p>
-                    <p onclick="dropdownClick(this)">Deconstruct</p>
+                <div class="container">
+                    <button class="dropbutton"></button>
+                    <div class="dropdown">
+                        <!-- script adds elements -->
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="button">
+        <div id="buttons">
             <button onclick="calculate()">Calculate</button>
+            <button onclick="reset()">Reset</button>
         </div>
         <div id="result">
-            <p>Effective magazine size: </p>
         </div>
     </main>
 </body>

@@ -39,7 +39,7 @@ main {
     padding: 6px;
 }
 
-#button button {
+#buttons button {
     background-color: #f5f5f5;
     color: #12171c;
     font-size: 18px;
@@ -48,11 +48,15 @@ main {
     cursor: pointer;
 }
 
-#button {
+#buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     margin: 60px 0 30px 0;
+    gap: 24px;
 }
 
-#button button:hover {
+#buttons button:hover {
     background-color: lightgray;
 }
 
@@ -63,6 +67,9 @@ main {
 }
 
 /*Dropdown menu*/
+.container {
+    position: relative;
+}
 .dropbutton {
     text-align: left;
     background-color: #12171c;
@@ -74,19 +81,22 @@ main {
     cursor: pointer;
 }
 .dropdown {
+    min-width: inherit;
     position: absolute;
     display: none;
     text-align: left;
     font-size: 14px;
     background-color: #f5f5f5;
 }
-.perk:hover > .dropbutton {
+.perk:hover > .container > .dropbutton {
     color: black;
     background-color: #f5f5f5;
 }
-.perk:hover > .dropdown {
+.perk:hover > .container > .dropdown {
     color: black;
     display: block;
+    min-width: 100%;
+    width: max-content;
 }
 .dropdown p:hover {
     background-color: lightgray;
