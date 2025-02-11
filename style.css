@@ -3,7 +3,7 @@ body {
     font-family: "Arial", sans-serif;
     background-color: #12171c;
     color: #f5f5f5;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
 }
 
@@ -19,7 +19,7 @@ header {
     font-weight: bold;
 }
 .small {
-    font-size: 16px;
+    font-size: 18px;
 }
 .hidden {
     display: none !important;
@@ -44,8 +44,8 @@ main {
 }
 
 .input input[type=text] {
-    width: 32px;
-    font-size: 18px;
+    width: 42px;
+    font-size: 20px;
     background-color: #12171c;
     color: #f5f5f5;
     border: none;
@@ -53,13 +53,14 @@ main {
 }
 
 .input input[type=button] {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     background-color: #12171c;
     border: none;
     color: #f5f5f5;
     font-size: 24px;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 .input input[type=button]:hover {
@@ -75,8 +76,8 @@ main {
 #buttons button {
     background-color: #f5f5f5;
     color: #12171c;
-    font-size: 18px;
-    padding: 7px;
+    font-size: 20px;
+    padding: 8px;
     border: none;
     font-weight: bold;
     cursor: pointer;
@@ -115,9 +116,10 @@ main {
     text-align: left;
     background-color: #12171c;
     color: #f5f5f5;
-    font-size: 18px;
+    font-size: 20px;
     padding: 6px;
-    width: 100%;
+    min-width: 100px;
+    max-width: 100%;
     border: none;
     cursor: pointer;
 }
@@ -125,7 +127,7 @@ main {
     position: absolute;
     display: none;
     text-align: left;
-    font-size: 14px;
+    font-size: 16px;
     background-color: #f5f5f5;
     color: black;
     min-width: 100%;
@@ -150,35 +152,7 @@ main {
 /*---------------*/
 
 /*mobile*/
-@media screen and (max-width: 500px) {
-    #selection {
-        display: inline-grid;
-        grid-template:
-            ". magsize rpm ."
-            ". primary enhanced ."
-            ". slot1 slot2 .";
-        grid-template-columns: 4% 46% 46% 4%;
-    }
-    /*grid areas*/
-    #magsize {
-        grid-area: magsize;
-    }
-    #rpm {
-        grid-area: rpm;
-    }
-    #primary {
-        grid-area: primary
-    }
-    #slot1 {
-        grid-area: slot1;
-    }
-    #slot2 {
-        grid-area: slot2;
-    }
-    #enhanced {
-        grid-area: enhanced;
-    }
-
+@media screen and (max-width: 600px) {
     header {
         margin: 120px 12px 60px 12px;
     }

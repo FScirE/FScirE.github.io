@@ -60,6 +60,18 @@ function toggle(b) {
     b.value = b.value == "" ? "X" : "";
 }
 
+function lfrToggle(b) {
+    toggle(b);
+    if (b.value == "X") {
+        document.querySelector("#primary h4").textContent = "Burst";
+        document.querySelector("#rpm h4").textContent = "Charge time";
+    }
+    else {
+        document.querySelector("#primary h4").textContent = "Primary";
+        document.querySelector("#rpm h4").textContent = "RPM";
+    }
+}
+
 function reset() {
     //reset perks
     selectedPerks = [];
@@ -88,10 +100,15 @@ function calculate() {
     let decon = false;
     let rr = false;
 
-    let primary = document.querySelector("#primary input").value == "X";
+    let lfr = document.querySelector("#lfr input").value == "X";
+    let primary = document.querySelector("#primary input").value == "X" && !lfr; //act as primary checkbox if not lfr
+    let burst = document.querySelector("#primary input").value == "X" && lfr; //act as burst checkbox if lfr
     let enhanced = document.querySelector("#enhanced input").value == "X";
     let baseMag = parseInt(document.querySelector("#magsize input").value);
     let rpm = parseInt(document.querySelector("#rpm input").value);
+
+    //lfr charge time to rpm
+    rpm = lfr ? ((1000 / (rpm + (burst ? rpm + 500 : rpm))) * 60) * (burst ? 3 : 1) : rpm;
 
     document.querySelectorAll(".dropbutton").forEach((d) => {
         switch (d.textContent) {
@@ -124,7 +141,7 @@ function calculate() {
     let currentMag = baseMag;
 
     while (currentMag > 0) {
-        let debug = `${currentMag}`;
+        //let debug = `${currentMag}`;
 
         effectiveMag++;
         currentMag--;
@@ -161,13 +178,25 @@ function calculate() {
         }
         //rewind rounds
         if (rr) {
-            rr_counter++;
-            if (currentMag == 0 && rr_counter >= Math.ceil(baseMag * 0.285)) {
-                currentMag += Math.ceil(rr_counter * (enhanced ? 0.7 : 0.6))
-                currentMag = currentMag > baseMag ? baseMag : currentMag;
-                rr_counter = -cooldown;
-                rr_refills++;
-                //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
+            if (burst) {
+                rr_counter += 3;
+                if (currentMag == 0 && Math.ceil(rr_counter / 3) >= Math.ceil(baseMag * 0.285)) {
+                    currentMag += Math.ceil(rr_counter * (enhanced ? 0.1633 : 0.14))
+                    currentMag = currentMag > baseMag ? baseMag : currentMag;
+                    rr_counter = -cooldown;
+                    rr_refills++;
+                    //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
+                }
+            }
+            else {
+                rr_counter++;
+                if (currentMag == 0 && rr_counter >= Math.ceil(baseMag * 0.2875)) {
+                    currentMag += Math.ceil(rr_counter * (enhanced ? 0.7 : 0.6))
+                    currentMag = currentMag > baseMag ? baseMag : currentMag;
+                    rr_counter = -cooldown;
+                    rr_refills++;
+                    //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
+                }
             }
             //infinity check
             if (rr_refills > baseMag + 1)
@@ -183,7 +212,7 @@ function calculate() {
     let totalSeconds;
     if (finite) {
         if (rpm != 0)
-            totalSeconds = Math.floor((effectiveMag * 60) / rpm);
+            totalSeconds = Math.ceil((effectiveMag * 60) / rpm) * (burst ? 3 : 1);
         else
             totalSeconds = "?";
     }

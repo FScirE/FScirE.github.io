@@ -9,25 +9,34 @@
 <body>
     <header>
         <h1>Destiny 2 Effective Magazine Size Calculator</h1>
-        <p>Basic calculator to see how much you can actually shoot without reloading. Disclaimer: Rewind rounds calculations are not 100% reliable, take them with a grain of salt.</p>
+        <p>Basic calculator to see how much you can actually shoot without reloading. Disclaimer: Rewind rounds as well as LFR calculations are not 100% reliable, take them with a grain of salt.</p>
     </header>
     <main>
         <div id="selection">
                 <div class="input" id="magsize">
-                    <h4>Base mag size</h4>
+                    <h4>Base mag</h4>
                     <input type="text" oninput="validate(this)">
                 </div>
                 <div class="input" id="rpm">
                     <h4>RPM</h4>
                     <input type="text" oninput="validate(this)">
                 </div>
+                <br>
                 <div class="input" id="primary">
-                    <h4>Primary ammo</h4>
+                    <h4>Primary</h4>
                     <input type="button" onclick="toggle(this)">
+                </div>
+                <div class="input" id="enhanced">
+                    <h4>Enhanced</h4>
+                    <input type="button" onclick="toggle(this)">
+                </div>
+                <div class="input" id="lfr">
+                    <h4>LFR</h4>
+                    <input type="button" onclick="lfrToggle(this)">
                 </div>
                 <br>
                 <div class="input perk" id="slot1">
-                    <h4>Perk slot 1</h4>
+                    <h4>Perk 1</h4>
                     <div class="container">
                         <button class="dropbutton"></button>
                         <div class="dropdown">
@@ -36,17 +45,13 @@
                     </div>
                 </div>
                 <div class="input perk" id="slot2">
-                    <h4>Perk slot 2</h4>
+                    <h4>Perk 2</h4>
                     <div class="container">
                         <button class="dropbutton"></button>
                         <div class="dropdown">
                             <!-- script adds elements -->
                         </div>
                     </div>
-                </div>
-                <div class="input" id="enhanced">
-                    <h4>Enhanced</h4>
-                    <input type="button" onclick="toggle(this)">
                 </div>
         </div>
         <div id="buttons">
