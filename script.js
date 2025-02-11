@@ -178,25 +178,16 @@ function calculate() {
         }
         //rewind rounds
         if (rr) {
-            if (burst) {
-                rr_counter += 3;
-                if (currentMag == 0 && Math.ceil(rr_counter / 3) >= Math.ceil(baseMag * 0.285)) {
+            rr_counter += (burst ? 3 : 1);
+            if (currentMag == 0 && Math.ceil(rr_counter / (burst ? 3 : 1)) >= Math.ceil(baseMag * 0.285)) {
+                if (burst)
                     currentMag += Math.ceil(rr_counter * (enhanced ? 0.1633 : 0.14))
-                    currentMag = currentMag > baseMag ? baseMag : currentMag;
-                    rr_counter = -cooldown;
-                    rr_refills++;
-                    //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
-                }
-            }
-            else {
-                rr_counter++;
-                if (currentMag == 0 && rr_counter >= Math.ceil(baseMag * 0.2875)) {
+                else
                     currentMag += Math.ceil(rr_counter * (enhanced ? 0.7 : 0.6))
-                    currentMag = currentMag > baseMag ? baseMag : currentMag;
-                    rr_counter = -cooldown;
-                    rr_refills++;
-                    //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
-                }
+                currentMag = currentMag > baseMag ? baseMag : currentMag;
+                rr_counter = -cooldown;
+                rr_refills++;
+                //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
             }
             //infinity check
             if (rr_refills > baseMag + 1)
