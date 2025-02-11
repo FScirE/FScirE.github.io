@@ -1,4 +1,4 @@
-const defaultDropdownList = ["Triple Tap", "Fourth Time's The Charm", "Deconstruct"];
+const defaultDropdownList = ["Triple Tap", "Fourth Time's The Charm", "Deconstruct", "Rewind Rounds"];
 var selectedPerks = [];
 
 //initialize
@@ -37,10 +37,16 @@ function dropdownClick(p) {
 }
 
 function validate(t) {
-    if (t.value.length <= 3 && !/^([1-9]\d*)$/.test(t.value))
-        t.value = "";
+    if (t.value[0] == '0')
+        t.value = t.value.substring(1, t.value.length);
+    if (t.value.length == 0 || (t.value.length <= 3 && !/^([0-9]\d*)$/.test(t.value)))
+        t.value = "0";
     if (t.value.length > 3)
         t.value = t.value.substring(0, t.value.length - 1);
+}
+
+function toggle(b) {
+    b.value = b.value == "" ? "X" : "";
 }
 
 function reset() {
@@ -55,8 +61,13 @@ function reset() {
     document.querySelectorAll(".dropbutton").forEach((b) => {
         b.textContent = "...";
     });
-    //clear text input and output
-    document.querySelector("#magsize input").value = "";
+    //clear inputs and output
+    document.querySelectorAll(".input input[type=text]").forEach((i) => {
+        i.value = "0";
+    });
+    document.querySelectorAll(".input input[type=button]").forEach((i) => {
+        i.value = "";
+    });
     document.querySelector("#result").innerHTML = "";
 }
 
@@ -66,11 +77,10 @@ function calculate() {
     let decon = false;
     let rr = false;
 
-    //default
-    let primary = false;
-    let enhanced = false;
-
+    let primary = document.querySelector("#primary input").value == "X";
+    let enhanced = document.querySelector("#enhanced input").value == "X";
     let baseMag = parseInt(document.querySelector("#magsize input").value);
+    let rpm = parseInt(document.querySelector("#rpm input").value);
 
     document.querySelectorAll(".dropbutton").forEach((d) => {
         switch (d.textContent) {
@@ -83,24 +93,36 @@ function calculate() {
             case "Deconstruct":
                 decon = true;
                 break;
+            case "Rewind Rounds":
+                rr = true;
+                break;
         }
     });
 
     let tt_counter = 0;
     let fttc_counter = 0;
     let decon_counter = 0;
+    let rr_counter = 0;
+
+    //for rewind rounds cooldown
+    let cooldown = Math.floor(rpm / 60);
 
     let effectiveMag = 0;
     let currentMag = baseMag;
+
     while (currentMag > 0) {
+        //let debug = `${currentMag}`;
+
         effectiveMag++;
         currentMag--;
+
         //triple tap
         if (tt) {
             tt_counter++;
             if (tt_counter == 3) {
                 currentMag++;
                 tt_counter = 0;
+                //debug += " +1"
             }
         }
         //fourth time's the charm
@@ -109,23 +131,52 @@ function calculate() {
             if (fttc_counter == 4) {
                 currentMag += 2;
                 fttc_counter = 0;
+                //debug += " +2"
             }
         }
         //deconstruct
         if (decon) {
             decon_counter++;
-            if (decon_counter == Math.floor(baseMag * 0.5) + 2) {
+            if (decon_counter == Math.floor(baseMag * (primary ? 0.25 : 0.5)) + 2) {
                 currentMag += Math.ceil(baseMag * 0.1)
                 decon_counter = 0;
+                //debug += ` +${Math.ceil(baseMag * 0.1)}`;
             }
+        }
+        //rewind rounds
+        if (rr) {
+            rr_counter++;
+            if (currentMag == 0 && rr_counter >= Math.ceil(baseMag * 0.285)) {
+                currentMag += Math.ceil(rr_counter * (enhanced ? 0.7 : 0.6))
+                rr_counter = -cooldown;
+                //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
+            }
+            //additional infinity check
+            if (rr_counter == 0 && currentMag == baseMag)
+                currentMag = baseMag + 1;
         }
 
         //check if infinite
         if (currentMag > baseMag)
             break;
+
+        //console.log(debug);
+    }
+
+    let finite = currentMag == 0;
+
+    //time to empty
+    let totalSeconds;
+    if (finite) {
+        if (rpm != 0)
+            totalSeconds = Math.floor((effectiveMag * 60) / rpm);
+        else
+            totalSeconds = "?";
     }
 
     //set result element
-    document.querySelector("#result").innerHTML =
-        `<p>Effective magazine size: ${currentMag == 0 ? effectiveMag : "Infinite"}</p>`;
+    document.querySelector("#result").innerHTML = `
+        <p class="bold">Effective magazine size: ${finite ? effectiveMag : "Infinite"}</p>
+        <p class="small">You won't have to reload for ${finite ? totalSeconds : "∞"} seconds!</p>
+    `;
 }

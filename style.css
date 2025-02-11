@@ -8,11 +8,18 @@ body {
 }
 
 h4 {
-    margin: 6px 0 12px 0;
+    margin: 0 0 12px 0;
 }
 
 header {
-    margin: 120px 0 60px 0;
+    margin: 120px 20px 60px 20px;
+}
+
+.bold {
+    font-weight: bold;
+}
+.small {
+    font-size: 16px;
 }
 
 main {
@@ -23,14 +30,22 @@ main {
 #selection {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    background-color: #30353a;
+    padding: 12px 0 12px 0;
+    box-shadow: 0 0 5px 5px #30353a;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
     gap: 5%;
-    background-color: #22272c;
     padding: 12px 0 12px 0;
 }
 
-#magsize input {
+.input input[type=text] {
     width: 32px;
     font-size: 18px;
     background-color: #12171c;
@@ -39,13 +54,30 @@ main {
     padding: 6px;
 }
 
+.input input[type=button] {
+    width: 32px;
+    height: 32px;
+    background-color: #12171c;
+    border: none;
+    color: #f5f5f5;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.input input[type=button]:hover {
+    background-color: lightgray;
+    color: #12171c;
+}
+
 #buttons button {
     background-color: #f5f5f5;
     color: #12171c;
     font-size: 18px;
-    padding: 6px;
+    padding: 7px;
     border: none;
+    font-weight: bold;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #buttons {
@@ -63,7 +95,8 @@ main {
 #result {
     display: inline-block;
     padding: 0 12px 0 12px;
-    background-color: #22272c;
+    background-color: #30353a;
+    border-radius: 11px;
 }
 
 /*Dropdown menu*/
