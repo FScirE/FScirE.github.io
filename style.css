@@ -12,7 +12,7 @@ h4 {
 }
 
 header {
-    margin: 120px 20px 60px 20px;
+    margin: 120px 40px 60px 40px;
 }
 
 .bold {
@@ -20,6 +20,9 @@ header {
 }
 .small {
     font-size: 16px;
+}
+.hidden {
+    display: none !important;
 }
 
 main {
@@ -29,20 +32,15 @@ main {
 
 #selection {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flexbox;
     background-color: #30353a;
     padding: 12px 0 12px 0;
     box-shadow: 0 0 5px 5px #30353a;
 }
 
-.section {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    gap: 5%;
-    padding: 12px 0 12px 0;
+.input {
+    display: inline-block;
+    padding: 12px;
 }
 
 .input input[type=text] {
@@ -67,6 +65,11 @@ main {
 .input input[type=button]:hover {
     background-color: lightgray;
     color: #12171c;
+    cursor: pointer;
+}
+
+.input input[type=button]:active {
+    background-color: gray;
 }
 
 #buttons button {
@@ -92,6 +95,11 @@ main {
     background-color: lightgray;
 }
 
+#buttons button:active {
+    background-color: #30353a;
+    color: #f5f5f5;
+}
+
 #result {
     display: inline-block;
     padding: 0 12px 0 12px;
@@ -114,22 +122,21 @@ main {
     cursor: pointer;
 }
 .dropdown {
-    min-width: inherit;
     position: absolute;
     display: none;
     text-align: left;
     font-size: 14px;
     background-color: #f5f5f5;
+    color: black;
+    min-width: 100%;
+    width: max-content;
 }
-.perk:hover > .container > .dropbutton {
+.container:hover > .dropbutton {
     color: black;
     background-color: #f5f5f5;
 }
-.perk:hover > .container > .dropdown {
-    color: black;
+.container:hover > .dropdown {
     display: block;
-    min-width: 100%;
-    width: max-content;
 }
 .dropdown p:hover {
     background-color: lightgray;
@@ -141,3 +148,42 @@ main {
     padding: 6px;
 }
 /*---------------*/
+
+/*mobile*/
+@media screen and (max-width: 500px) {
+    #selection {
+        display: inline-grid;
+        grid-template:
+            ". magsize rpm ."
+            ". primary enhanced ."
+            ". slot1 slot2 .";
+        grid-template-columns: 4% 46% 46% 4%;
+    }
+    /*grid areas*/
+    #magsize {
+        grid-area: magsize;
+    }
+    #rpm {
+        grid-area: rpm;
+    }
+    #primary {
+        grid-area: primary
+    }
+    #slot1 {
+        grid-area: slot1;
+    }
+    #slot2 {
+        grid-area: slot2;
+    }
+    #enhanced {
+        grid-area: enhanced;
+    }
+
+    header {
+        margin: 120px 12px 60px 12px;
+    }
+
+    .input {
+        padding: 8px;
+    }
+}

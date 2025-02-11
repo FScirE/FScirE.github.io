@@ -4,9 +4,17 @@ var selectedPerks = [];
 //initialize
 reset();
 
+//make hidden tag clear when the dropdown goes away
+document.querySelectorAll(".container").forEach((c) => {
+    c.addEventListener("mouseover", () => {
+        c.querySelector(".dropdown").classList.remove("hidden");
+    });
+});
+
 function dropdownClick(p) {
     let d = document.querySelectorAll('.dropdown');
-    let buttonContent = p.parentElement.parentElement.querySelector('button').textContent;
+    let c = p.parentElement.parentElement;
+    let buttonContent = c.querySelector('button').textContent;
     let perk = p.textContent;
 
     let index = defaultDropdownList.indexOf(perk);
@@ -20,9 +28,12 @@ function dropdownClick(p) {
         selectedPerks.splice(selectIndex, 1);
 
     //update selected perk
-    p.parentElement.parentElement.querySelector('button').textContent = perk;
+    c.querySelector('button').textContent = perk;
     if (perk != "...")
         selectedPerks.push(perk);
+
+    //hide menu
+    c.querySelector(".dropdown").classList.add("hidden");
 
     //rebuild dropdown list
     d.forEach((e) => {
@@ -148,6 +159,7 @@ function calculate() {
             rr_counter++;
             if (currentMag == 0 && rr_counter >= Math.ceil(baseMag * 0.285)) {
                 currentMag += Math.ceil(rr_counter * (enhanced ? 0.7 : 0.6))
+                currentMag = currentMag > baseMag ? baseMag : currentMag;
                 rr_counter = -cooldown;
                 //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
             }
