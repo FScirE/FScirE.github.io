@@ -117,12 +117,14 @@ function calculate() {
 
     //for rewind rounds cooldown
     let cooldown = Math.floor(rpm / 60);
+    //for rewind rounds infinite mag
+    let rr_refills = 0;
 
     let effectiveMag = 0;
     let currentMag = baseMag;
 
     while (currentMag > 0) {
-        //let debug = `${currentMag}`;
+        let debug = `${currentMag}`;
 
         effectiveMag++;
         currentMag--;
@@ -132,6 +134,7 @@ function calculate() {
             tt_counter++;
             if (tt_counter == 3) {
                 currentMag++;
+                currentMag = currentMag > baseMag ? baseMag : currentMag;
                 tt_counter = 0;
                 //debug += " +1"
             }
@@ -141,6 +144,7 @@ function calculate() {
             fttc_counter++;
             if (fttc_counter == 4) {
                 currentMag += 2;
+                currentMag = currentMag > baseMag ? baseMag : currentMag;
                 fttc_counter = 0;
                 //debug += " +2"
             }
@@ -150,6 +154,7 @@ function calculate() {
             decon_counter++;
             if (decon_counter == Math.floor(baseMag * (primary ? 0.25 : 0.5)) + 2) {
                 currentMag += Math.ceil(baseMag * 0.1)
+                currentMag = currentMag > baseMag ? baseMag : currentMag;
                 decon_counter = 0;
                 //debug += ` +${Math.ceil(baseMag * 0.1)}`;
             }
@@ -161,16 +166,13 @@ function calculate() {
                 currentMag += Math.ceil(rr_counter * (enhanced ? 0.7 : 0.6))
                 currentMag = currentMag > baseMag ? baseMag : currentMag;
                 rr_counter = -cooldown;
+                rr_refills++;
                 //debug += ` +${Math.ceil(baseMag * (enhanced ? 0.7 : 0.6))}`;
             }
-            //additional infinity check
-            if (rr_counter == 0 && currentMag == baseMag)
-                currentMag = baseMag + 1;
+            //infinity check
+            if (rr_refills > baseMag + 1)
+                break;
         }
-
-        //check if infinite
-        if (currentMag > baseMag)
-            break;
 
         //console.log(debug);
     }
@@ -189,6 +191,6 @@ function calculate() {
     //set result element
     document.querySelector("#result").innerHTML = `
         <p class="bold">Effective magazine size: ${finite ? effectiveMag : "Infinite"}</p>
-        <p class="small">You won't have to reload for ${finite ? totalSeconds : "∞"} seconds!</p>
+        <p class="small">You won't have to reload${finite ? " for " + totalSeconds + " seconds" : ""}!</p>
     `;
 }
